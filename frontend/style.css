@@ -1,0 +1,285 @@
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.02"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E') repeat;
+  opacity: 0.18;
+  pointer-events: none;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 16px 0 16px;
+  position: relative;
+  z-index: 1;
+}
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+  padding-top: 32px;
+}
+.film-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+h1 {
+  font-size: 3.2em;
+  font-weight: 800;
+  background: linear-gradient(90deg, #fff 60%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+.subtitle {
+  color: #cbd5e1;
+  font-size: 1.25em;
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.search-form {
+  backdrop-filter: blur(16px);
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.13);
+  border-radius: 2em;
+  box-shadow: 0 4px 32px rgba(30,41,59,0.13);
+  padding: 36px 32px 28px 32px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.input-group {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin-bottom: 18px;
+}
+.input-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 1.2em;
+  pointer-events: none;
+  z-index: 2;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 18px 16px 18px 48px;
+  border: 1.5px solid #334155;
+  border-radius: 1.5em;
+  font-size: 1.15em;
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(30,41,59,0.08);
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+input[type="text"]:focus {
+  border: 1.5px solid #6366f1;
+  background: rgba(255,255,255,0.13);
+}
+button {
+  width: 100%;
+  background: linear-gradient(90deg, #2563eb 60%, #7c3aed 100%);
+  color: #fff;
+  border: none;
+  padding: 18px 0;
+  border-radius: 1.5em;
+  font-size: 1.15em;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(30,41,59,0.13);
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+button:hover:not(:disabled) {
+  background: linear-gradient(90deg, #1d4ed8 60%, #6d28d9 100%);
+  transform: scale(1.02);
+  box-shadow: 0 4px 18px rgba(124,58,237,0.13);
+}
+button:disabled {
+  background: #334155;
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+#sonuclar {
+  margin-top: 40px;
+  text-align: left;
+}
+#sonuclar h2 {
+  color: #fff;
+  margin-bottom: 24px;
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+#sonuclar ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 44px;
+  list-style: none;
+  padding: 0 12px;
+  justify-items: center;
+}
+.film-card {
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.10);
+  border-radius: 1.5em;
+  box-shadow: 0 4px 24px rgba(30,41,59,0.18);
+  border: 1.5px solid rgba(255,255,255,0.13);
+  padding: 14px 10px 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: box-shadow 0.18s, border 0.18s, transform 0.12s;
+  position: relative;
+  min-height: 0;
+  max-width: 340px;
+  width: 100%;
+  animation: fadeInUp 0.7s;
+}
+.film-card:hover {
+  box-shadow: 0 8px 32px rgba(124,58,237,0.22);
+  border: 1.5px solid #6366f1;
+  transform: translateY(-3px) scale(1.025);
+}
+.film-poster {
+  border-radius: 1em;
+  box-shadow: 0 2px 8px rgba(30,41,59,0.10);
+  background: #1e293b;
+  object-fit: cover;
+  width: 140px;
+  height: 210px;
+  flex-shrink: 0;
+  border: 1.5px solid #334155;
+  margin-bottom: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.film-title {
+  color: #fff;
+  font-size: 1em;
+  font-weight: 800;
+  margin-bottom: 2px;
+  letter-spacing: 0.3px;
+  text-align: center;
+  line-height: 1.15;
+}
+.film-temalar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: 0px;
+  justify-content: center;
+}
+.film-theme-label {
+  color: #a5b4fc;
+  font-size: 0.8em;
+  font-weight: 700;
+  margin-bottom: 0px;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.film-theme-tag {
+  background: linear-gradient(90deg, #2563eb 60%, #7c3aed 100%);
+  color: #fff;
+  font-size: 0.8em;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 1em;
+  border: 1.2px solid #6366f1;
+  box-shadow: 0 1px 4px rgba(30,41,59,0.08);
+  letter-spacing: 0.15px;
+  opacity: 0.93;
+  transition: background 0.2s, color 0.2s;
+  margin: 1.5px 1.5px;
+}
+.film-link {
+  margin-top: 6px;
+  font-size: 0.92em;
+  color: #a5b4fc;
+  font-weight: 600;
+  letter-spacing: 0.15px;
+  text-align: center;
+}
+.film-link a {
+  color: #a5b4fc;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.film-link a:hover {
+  color: #fff;
+}
+#loading-msg {
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 1200px) {
+  #sonuclar ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    padding: 0 8px;
+  }
+}
+@media (max-width: 800px) {
+  #sonuclar ul {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 0 12px;
+  }
+  .film-card {
+    min-height: 0;
+    max-width: 98vw;
+    padding: 10px 6vw 10px 6vw;
+  }
+  .film-poster {
+    width: 90px;
+    height: 135px;
+  }
+  .film-title {
+    font-size: 0.93em;
+  }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+} 
