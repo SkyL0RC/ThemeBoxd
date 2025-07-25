@@ -16,6 +16,8 @@ Not: chromedriver yüklü olmalıdır.
 Kurulum:
 pip install -r requirements.txt
 
+NOT: Projenin backend kısmı Oğuz Tunç, frontend kısmı Uğur Coşkun tarafından yapılmıştır.
+
 
 
 
