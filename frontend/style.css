@@ -263,20 +263,53 @@ button:disabled {
 @media (max-width: 800px) {
   #sonuclar ul {
     grid-template-columns: 1fr;
-    gap: 18px;
-    padding: 0 12px;
+    gap: 12px;
+    padding: 0 6px;
   }
   .film-card {
     min-height: 0;
-    max-width: 98vw;
-    padding: 10px 6vw 10px 6vw;
+    max-width: 95vw;
+    padding: 6px 2vw 6px 2vw;
+    gap: 4px;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
   }
   .film-poster {
-    width: 90px;
-    height: 135px;
+    width: 70px;
+    height: 105px;
+    margin-bottom: 4px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   .film-title {
-    font-size: 0.93em;
+    font-size: 0.82em;
+    margin-bottom: 1px;
+    text-align: center;
+  }
+  .film-theme-label {
+    font-size: 0.65em;
+    text-align: center;
+  }
+  .film-theme-tag {
+    font-size: 0.65em;
+    padding: 2px 6px;
+    margin: 0.5px 0.5px;
+  }
+  .film-link {
+    font-size: 0.75em;
+    margin-top: 2px;
+    text-align: center;
+  }
+  .user-film-block {
+    max-width: 95vw;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 }
 @keyframes fadeInUp {

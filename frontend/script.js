@@ -47,6 +47,7 @@ document.getElementById('filmForm').addEventListener('submit', async function(e)
             },
             body: JSON.stringify({ filmAdi })
         });
+        
         const data = await response.json();
         if (loadingInterval) clearInterval(loadingInterval);
         if (loadingMsgInterval) clearInterval(loadingMsgInterval);
