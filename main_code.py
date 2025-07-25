@@ -11,8 +11,7 @@ import os
 TMDB_API_KEY = "4c4ca6bb233ef9ca3b5172891aacb992"
 
 app = Flask(__name__)
-CORS(app, 
-     resources={r"/*": {"origins": "*"}},
+CORS(app, resources={r"/*": {"origins": ["https://themeboxd.netlify.app"]}}, 
      methods=["GET", "POST", "OPTIONS"],
      allow_headers=["Content-Type", "Authorization"],
      supports_credentials=True)
@@ -99,7 +98,7 @@ def get_tmdb_poster_url(movie_name):
 def api_oner():
     if request.method == 'OPTIONS':
         response = jsonify({'status': 'ok'})
-        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Origin', 'https://themeboxd.netlify.app')
         response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
         response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
         return response
