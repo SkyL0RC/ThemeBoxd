@@ -5,11 +5,17 @@ from sentence_transformers import SentenceTransformer
 from flask_cors import CORS
 import requests
 import re
+import os
+ 
 
 TMDB_API_KEY = "4c4ca6bb233ef9ca3b5172891aacb992"
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, 
+     resources={r"/*": {"origins": "*"}},
+     methods=["GET", "POST", "OPTIONS"],
+     allow_headers=["Content-Type", "Authorization"],
+     supports_credentials=True)
 df = pd.read_json("themes_embedded.json")
 df['embedding'] = df['embedding'].apply(np.array)
 model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -89,8 +95,15 @@ def get_tmdb_poster_url(movie_name):
         slug = slugify(movie_name)
         return f"https://letterboxd.com/film/{slug}/poster/"
 
-@app.route('/api/oner', methods=['POST'])
+@app.route('/api/oner', methods=['POST', 'OPTIONS'])
 def api_oner():
+    if request.method == 'OPTIONS':
+        response = jsonify({'status': 'ok'})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+        return response
+    
     try:
         data = request.get_json()
         movie_name = data.get('filmAdi')
@@ -114,7 +127,8 @@ def api_oner():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
 
 
 
