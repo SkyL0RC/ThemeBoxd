@@ -264,16 +264,17 @@ button:disabled {
   #sonuclar ul {
     grid-template-columns: 1fr;
     gap: 12px;
-    padding: 0 6px;
+    padding: 0;
   }
   .film-card {
     min-height: 0;
     max-width: 95vw;
-    padding: 6px 2vw 6px 2vw;
+    padding: 4px 2px 4px 2px;
     gap: 4px;
     margin: 0 auto;
     text-align: center;
     overflow: hidden;
+    box-sizing: border-box;
   }
   .film-poster {
     width: 70px;
