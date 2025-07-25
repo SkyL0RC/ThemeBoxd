@@ -16,7 +16,7 @@ CORS(app, resources={r"/*": {"origins": ["https://themeboxd.netlify.app"]}},
      methods=["GET", "POST", "OPTIONS"],
      allow_headers=["Content-Type", "Authorization"],
      supports_credentials=True)
-df = pd.read_json("themes_embedded.json")
+df = pd.read_json("backend/themes_embedded.json")
 df['embedding'] = df['embedding'].apply(np.array)
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -25,7 +25,7 @@ def slugify(name):
 
 def get_themes(movie_name):
     try:
-        with open("themes.json", "r", encoding="utf-8") as f:
+        with open("backend/themes.json", "r", encoding="utf-8") as f:
             all_themes = json.load(f)
         for film in all_themes:
             if film["name"].strip().lower() == movie_name.strip().lower():

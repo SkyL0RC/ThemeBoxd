@@ -1,6 +1,6 @@
 import pandas as pd
 
-df=pd.read_json("themes.json")
+df=pd.read_json("backend/themes.json")
 
 df=df[df["theme"]!="NaN"]
 
@@ -18,4 +18,4 @@ df['embedding'] = df['theme'].apply(get_film_embedding)
 
 df["embedding"]=df["embedding"].apply(lambda x: x.tolist())
 
-df.to_json("themes_embedded.json", orient="records", indent=2)
+df.to_json("backend/themes_embedded.json", orient="records", indent=2)
