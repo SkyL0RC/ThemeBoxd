@@ -16,36 +16,31 @@ CORS(app, resources={r"/*": {"origins": ["https://themeboxd.netlify.app"]}},
      methods=["GET", "POST", "OPTIONS"],
      allow_headers=["Content-Type", "Authorization"],
      supports_credentials=True)
-df = pd.read_json("backend/themes_embedded.json")
+df = pd.read_json("themes_embedded.json")
 df['embedding'] = df['embedding'].apply(np.array)
-model = SentenceTransformer('all-MiniLM-L6-v2')
+
 
 def slugify(name):
     return re.sub(r'(^-|-$)', '', re.sub(r'[^a-z0-9]+', '-', name.lower()))
 
 def get_themes(movie_name):
     try:
-        with open("backend/themes.json", "r", encoding="utf-8") as f:
-            all_themes = json.load(f)
-        for film in all_themes:
-            if film["name"].strip().lower() == movie_name.strip().lower():
-                return film["theme"]
-    except Exception as e:
-        print("Tema bulma hatası:", e)
-    return []
+        a=df[df["name"]==movie_name]
+        return a["embedding"].values[0]
+    except:
+        return []
 
 def recommend(themes, df, movie_name=None, top_n=6):
     from sklearn.metrics.pairwise import cosine_similarity
-    theme_vec = model.encode(themes)
-    theme_vec_mean = np.mean(theme_vec, axis=0).reshape(1, -1)
+    theme_vec=themes.reshape(1,-1)
     vecs = np.vstack(df["embedding"].values)
-    sim = cosine_similarity(theme_vec_mean, vecs)[0]
-    predict = sim.argsort()[::-1]
+    sim = cosine_similarity(theme_vec, vecs)[0]
+    predict=sim.argsort()[::-1][:top_n]
     results = df.iloc[predict][["name", "theme"]]
     if movie_name:
         # Girilen film adını önerilerden çıkar (küçük harfe çevirerek karşılaştır)
         results = results[results["name"].str.lower() != movie_name.strip().lower()]
-    return results.head(top_n)
+    return results
 
 def get_tmdb_poster_url(movie_name):
     try:
@@ -104,6 +99,5 @@ def api_oner():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=True)
-
 
 
