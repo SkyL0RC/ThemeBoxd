@@ -40,7 +40,7 @@ document.getElementById('filmForm').addEventListener('submit', async function(e)
     }, 1800);
     let totalElapsed = 0;
     try {
-        const response = await fetch('https://themeboxd.zeabur.app/', {
+        const response = await fetch('https://themeboxd.zeabur.app/api/oner', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
