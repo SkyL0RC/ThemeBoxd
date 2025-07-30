@@ -1,4 +1,4 @@
-Bu proje python ile letterboxd film temalarını kullanarak film önersi yapar.
+Bu proje python ile letterboxd film temalarını kullanarak film önerisi yapar.
 
 Selenium ile 13 bin filmin tema bilgisi jsona kaydedildi.
 Çekilen veriler Sentence Transformer ile embedding edilip jsona kaydedildi.
